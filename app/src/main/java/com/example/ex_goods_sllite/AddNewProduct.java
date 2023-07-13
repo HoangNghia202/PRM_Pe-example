@@ -43,6 +43,11 @@ public class AddNewProduct extends AppCompatActivity {
                     return;
                 }
 
+                if (!checkIsNumber(etProductPrice.getText().toString())) {
+                    Toast.makeText(this, "Price must be a number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 String newName = etProductName.getText().toString();
                 String newPrice = etProductPrice.getText().toString();
                 String newDesc = etProductDescription.getText().toString();
@@ -55,5 +60,14 @@ public class AddNewProduct extends AppCompatActivity {
                 Toast.makeText(this, "Error while adding product", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private boolean checkIsNumber(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
